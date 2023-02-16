@@ -4,7 +4,7 @@ import FavJob from "./FavJob";
 
 const Favorites = () => {
   const favJobs = useSelector((state) => state.favorite.companies);
-  console.log(favJobs);
+  //   console.log(favJobs);
   return (
     <>
       <Container>

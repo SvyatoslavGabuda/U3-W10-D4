@@ -19,7 +19,7 @@ const MainSearch = () => {
       const response = await fetch(baseEndpoint + query + "&limit=20");
       if (response.ok) {
         const { data } = await response.json();
-        console.log(data);
+        // console.log(data);
         setJobs(data);
       } else {
         alert("Error fetching results");

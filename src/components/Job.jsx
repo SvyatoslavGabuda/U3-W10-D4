@@ -4,13 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 
 const Job = ({ data }) => {
   const myDispatch = useDispatch();
-  const savedJobs = useSelector((state) => state.favorite.companies);
-  // console.log("salvati", savedJobs);
-  let save = [];
-  if (savedJobs.length > 0) {
-    save = savedJobs.filter((job) => job._id.includes(data._id));
-  }
-  // console.log("save", save);
+  const savedid = useSelector((state) => state.favorite.companies.map((el) => el._id));
 
   return (
     <Row className="mx-0 mt-3 p-3" style={{ border: "1px solid #00000033", borderRadius: 4 }}>
@@ -25,8 +19,9 @@ const Job = ({ data }) => {
       <Col>
         {" "}
         <button
+          className="saveBtn"
           style={{
-            backgroundColor: save[0] == data ? "red" : "white",
+            color: savedid.includes(data._id) ? "red" : "black",
           }}
           onClick={() => {
             myDispatch({
@@ -35,7 +30,7 @@ const Job = ({ data }) => {
             });
           }}
         >
-          Add To Fav
+          <i className="bi bi-heart"></i>
         </button>
       </Col>
     </Row>
