@@ -2,8 +2,8 @@ import { ADD_ALL_SEARCHED_JOB, ADD_JOB, THERE_IS_AN_ERROR } from "../actions/act
 
 const initialState = {
   jobs: [],
-  error: false,
   allSearchedJob: [],
+  error: false,
 };
 
 const jobReduce = (state = initialState, action) => {
