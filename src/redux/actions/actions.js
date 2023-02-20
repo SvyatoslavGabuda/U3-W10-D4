@@ -1,6 +1,7 @@
 export const SAVE_FAV = "SAVE_FAV";
 export const REMOVE_FAV = "REMOVE_FAV";
 export const ADD_JOB = "ADD_JOB";
+export const ADD_ALL_SEARCHED_JOB = "ADD_ALL_SEARCHED_JOB";
 export const THERE_IS_AN_ERROR = "THERE_IS_AN_ERROR";
 
 export const addToFav = (data) => ({
@@ -16,6 +17,10 @@ export const special = (baseEndpoint, query) => {
         const { data } = await response.json();
         dispatch({
           type: ADD_JOB,
+          payload: data,
+        });
+        dispatch({
+          type: ADD_ALL_SEARCHED_JOB,
           payload: data,
         });
       } else {

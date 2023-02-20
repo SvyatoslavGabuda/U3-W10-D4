@@ -6,6 +6,7 @@ import CompanySearchResults from "./components/CompanySearchResults";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import MyNav from "./components/MyNav";
 import Favorites from "./components/Favorites";
+import AllSearch from "./components/AllSearch";
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
         <Route path="/" element={<MainSearch />} />
         <Route path="/:companyName" element={<CompanySearchResults />} />
         <Route path="/favorites" element={<Favorites />} />
+        <Route path="/allSearch" element={<AllSearch />} />
       </Routes>
     </BrowserRouter>
   );

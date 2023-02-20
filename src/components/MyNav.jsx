@@ -15,6 +15,9 @@ const MyNav = () => {
               <Link to="/favorites" className="nav-link">
                 <span className="nav-link">Favorites</span>
               </Link>
+              <Link to="/allSearch" className="nav-link">
+                <span className="nav-link">All your search</span>
+              </Link>
             </Nav>
           </Navbar.Collapse>
         </Container>

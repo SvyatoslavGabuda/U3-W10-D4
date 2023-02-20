@@ -6,12 +6,11 @@ import Job from "./Job";
 
 const MainSearch = () => {
   const [query, setQuery] = useState("");
-
   const dispatch = useDispatch();
   const findedJobs = useSelector((state) => state.saveJob.jobs);
-  const baseEndpoint = "https://strive-benchmark.herokuapp.com/api/jobs?search=";
-
   const thereIsError = useSelector((state) => state.saveJob.error);
+
+  const baseEndpoint = "https://strive-benchmark.herokuapp.com/api/jobs?search=";
 
   const handleChange = (e) => {
     setQuery(e.target.value);
@@ -19,7 +18,6 @@ const MainSearch = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     dispatch(special(baseEndpoint, query));
   };
 
@@ -41,7 +39,9 @@ const MainSearch = () => {
         </Col>
         <Col xs={10} className="mx-auto mb-5">
           {thereIsError && <Alert variant="danger"> There was an error with the fetch</Alert>}
-          {findedJobs.map((jobData) => jobData.map((el) => <Job key={el._id} data={el} />))}
+          {findedJobs.map((jobData) => (
+            <Job key={jobData._id} data={jobData} />
+          ))}
         </Col>
       </Row>
     </Container>
