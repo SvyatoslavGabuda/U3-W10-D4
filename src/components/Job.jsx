@@ -1,6 +1,7 @@
 import { Row, Col } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
+import { addToFav } from "../redux/actions/actions";
 
 const Job = ({ data }) => {
   const myDispatch = useDispatch();
@@ -24,10 +25,7 @@ const Job = ({ data }) => {
             color: savedid.includes(data._id) ? "red" : "black",
           }}
           onClick={() => {
-            myDispatch({
-              type: "SAVE_FAV",
-              payload: data,
-            });
+            myDispatch(addToFav(data));
           }}
         >
           <i className="bi bi-heart"></i>

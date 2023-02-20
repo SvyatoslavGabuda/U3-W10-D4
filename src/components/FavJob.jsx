@@ -1,6 +1,7 @@
 import { Row, Col } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
+import { REMOVE_FAV } from "../redux/actions/actions";
 
 const FavJob = ({ data }) => {
   const myDispatch = useDispatch();
@@ -19,7 +20,7 @@ const FavJob = ({ data }) => {
         <button
           onClick={() => {
             myDispatch({
-              type: "REMOVE_FAV",
+              type: REMOVE_FAV,
               payload: data._id,
             });
           }}

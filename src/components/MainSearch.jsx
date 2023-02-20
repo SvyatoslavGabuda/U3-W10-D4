@@ -1,12 +1,17 @@
 import { useState } from "react";
-import { Container, Row, Col, Form } from "react-bootstrap";
+import { Container, Row, Col, Form, Alert } from "react-bootstrap";
+import { useDispatch, useSelector } from "react-redux";
+import { special } from "../redux/actions/actions";
 import Job from "./Job";
 
 const MainSearch = () => {
   const [query, setQuery] = useState("");
-  const [jobs, setJobs] = useState([]);
 
+  const dispatch = useDispatch();
+  const findedJobs = useSelector((state) => state.saveJob.jobs);
   const baseEndpoint = "https://strive-benchmark.herokuapp.com/api/jobs?search=";
+
+  const thereIsError = useSelector((state) => state.saveJob.error);
 
   const handleChange = (e) => {
     setQuery(e.target.value);
@@ -15,18 +20,7 @@ const MainSearch = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    try {
-      const response = await fetch(baseEndpoint + query + "&limit=20");
-      if (response.ok) {
-        const { data } = await response.json();
-        // console.log(data);
-        setJobs(data);
-      } else {
-        alert("Error fetching results");
-      }
-    } catch (error) {
-      console.log(error);
-    }
+    dispatch(special(baseEndpoint, query));
   };
 
   return (
@@ -46,9 +40,8 @@ const MainSearch = () => {
           </Form>
         </Col>
         <Col xs={10} className="mx-auto mb-5">
-          {jobs.map((jobData) => (
-            <Job key={jobData._id} data={jobData} />
-          ))}
+          {thereIsError && <Alert variant="danger"> There was an error with the fetch</Alert>}
+          {findedJobs.map((jobData) => jobData.map((el) => <Job key={el._id} data={el} />))}
         </Col>
       </Row>
     </Container>
