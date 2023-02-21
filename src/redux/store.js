@@ -3,7 +3,6 @@ import { persistReducer, persistStore } from "redux-persist";
 import storage from "redux-persist/lib/storage";
 import { encryptTransform } from "redux-persist-transform-encrypt";
 
-// reducers import:
 import mainReducer from "./reducers/reducers";
 import jobReduce from "./reducers/jobReduce";
 import loadReduce from "./reducers/loadReduce";
