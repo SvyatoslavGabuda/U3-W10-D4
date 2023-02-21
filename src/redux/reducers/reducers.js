@@ -1,7 +1,8 @@
-import { REMOVE_FAV, SAVE_FAV } from "../actions/actions";
+import { ADD_TO_COUNTER, REMOVE_FAV, REMOVE_TO_COUNTER, SAVE_FAV } from "../actions/actions";
 
 const initialState = {
   companies: [],
+  counter: 0,
 };
 
 const mainReducer = (state = initialState, action) => {
@@ -24,6 +25,16 @@ const mainReducer = (state = initialState, action) => {
         ...state,
 
         companies: state.companies.filter((job) => job._id !== action.payload),
+      };
+    case ADD_TO_COUNTER:
+      return {
+        ...state,
+        counter: state.counter + 1,
+      };
+    case REMOVE_TO_COUNTER:
+      return {
+        ...state,
+        counter: state.counter - 1,
       };
 
     default:

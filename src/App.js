@@ -7,6 +7,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import MyNav from "./components/MyNav";
 import Favorites from "./components/Favorites";
 import AllSearch from "./components/AllSearch";
+import JustClassComp from "./components/JustClassComp";
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
         <Route path="/:companyName" element={<CompanySearchResults />} />
         <Route path="/favorites" element={<Favorites />} />
         <Route path="/allSearch" element={<AllSearch />} />
+        <Route path="/classComponent" element={<JustClassComp />} />
       </Routes>
     </BrowserRouter>
   );

@@ -18,6 +18,9 @@ const MyNav = () => {
               <Link to="/allSearch" className="nav-link">
                 <span className="nav-link">All your search</span>
               </Link>
+              <Link to="/classComponent" className="nav-link">
+                <span className="nav-link">ClassComponent</span>
+              </Link>
             </Nav>
           </Navbar.Collapse>
         </Container>

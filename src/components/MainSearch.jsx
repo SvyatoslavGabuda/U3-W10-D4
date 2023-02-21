@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Container, Row, Col, Form, Alert } from "react-bootstrap";
+import { Container, Row, Col, Form, Alert, Spinner } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { special } from "../redux/actions/actions";
 import Job from "./Job";
@@ -8,7 +8,8 @@ const MainSearch = () => {
   const [query, setQuery] = useState("");
   const dispatch = useDispatch();
   const findedJobs = useSelector((state) => state.saveJob.jobs);
-  const thereIsError = useSelector((state) => state.saveJob.error);
+  const thereIsError = useSelector((state) => state.loadingState.hasError);
+  const loading = useSelector((state) => state.loadingState.loading);
 
   const baseEndpoint = "https://strive-benchmark.herokuapp.com/api/jobs?search=";
 
@@ -38,6 +39,9 @@ const MainSearch = () => {
           </Form>
         </Col>
         <Col xs={10} className="mx-auto mb-5">
+          <Row className="justify-content-center">
+            {loading && <Spinner animation="border" variant="dark" />}
+          </Row>
           {thereIsError && <Alert variant="danger"> There was an error with the fetch</Alert>}
           {findedJobs.map((jobData) => (
             <Job key={jobData._id} data={jobData} />
